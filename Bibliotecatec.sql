@@ -26,7 +26,7 @@ HoraSalida datetime
 Create table Administradores
 (
 Usuarios varchar (20) primary key,
-Contraseña varchar (45)
+ContraseÃ±a varchar (45)
 )
 -- crear relaciones 
 alter table registros add constraint alumnosRegistros
@@ -36,7 +36,7 @@ alter table Alumnos add constraint CarrerasAlumnos
 
 insert into Carreras(IdCarrera,NombreCarrera)values('ISIC','Sistemas Computacionales')
 insert into Carreras(IdCarrera,NombreCarrera)values('IIND','Industrial')
-insert into Carreras(IdCarrera,NombreCarrera)values('IGEM','Gestión Empresarial')
+insert into Carreras(IdCarrera,NombreCarrera)values('IGEM','GestiÃ³n Empresarial')
 insert into Carreras(IdCarrera,NombreCarrera)values('ILOG','Logistica')
 
 
@@ -45,26 +45,38 @@ insert into Alumnos(Matricula,Nombre,ApellidoPaterno,ApellidoMaterno,IdCarrera,S
 go
 
 create procedure InsertarEntradas
-@Matricula varchar (9)
+@Matricula varchar (9),
+@msg varchar (130) out 
 as
 begin
-     if exists (select Id_Matricula from registros where Id_Matricula=@Matricula)
-		 Begin
-		 if exists (select HoraSalida from registros where Id_Matricula=@Matricula and HoraSalida is null)     
-			 begin 
-			 update registros
-			 set HoraSalida=GETDATE()where Id_Matricula=@Matricula and HoraSalida is null
-			 end      
-		 else
-			 begin
-			  insert into registros(Id_Matricula,HoraEntrada)values (@Matricula,GETDATE())
-			 end
-		 end
-     else
-     begin 
-		 insert into registros(Id_Matricula,HoraEntrada)values (@Matricula,GETDATE())
-     end
+	if exists (select Matricula from Alumnos where Matricula=@Matricula)
+		begin
+			 if exists (select Id_Matricula from registros where Id_Matricula=@Matricula)
+		                         Begin
+					 if exists (select HoraSalida from registros where Id_Matricula=@Matricula and HoraSalida is null)     
+						 begin 
+							 update registros
+							 set HoraSalida=GETDATE()where Id_Matricula=@Matricula and HoraSalida is null
+							 set @msg = 'Que tenga un buen dia'
+						 end      
+					 else
+						 begin
+						  insert into registros(Id_Matricula,HoraEntrada)values (@Matricula,GETDATE())
+						  set @msg = 'Bienvenido'
+						 end
+				 end
+			 else
+				 begin 
+					 insert into registros(Id_Matricula,HoraEntrada)values (@Matricula,GETDATE())
+				 end
+		end
+	else
+		begin
+			set @msg = 'La Matricula no existe o aun no esta registrada \n si este es el caso acuda con el encargado de biblioteca'
+		end
 end
-execute InsertarEntradas '131000153'
 
+declare @mensaje varchar (130) 
+execute InsertarEntradas '131000153',@mensaje out
+print @mensaje
 select * from registros
