@@ -26,7 +26,7 @@ HoraSalida datetime
 Create table Administradores
 (
 Usuarios varchar (20) primary key,
-Contraseña varchar (45)
+ContraseÃ±a varchar (45)
 )
 -- crear relaciones 
 alter table registros add constraint alumnosRegistros
@@ -36,7 +36,7 @@ alter table Alumnos add constraint CarrerasAlumnos
 
 insert into Carreras(IdCarrera,NombreCarrera)values('ISIC','Sistemas Computacionales')
 insert into Carreras(IdCarrera,NombreCarrera)values('IIND','Industrial')
-insert into Carreras(IdCarrera,NombreCarrera)values('IGEM','Gestión Empresarial')
+insert into Carreras(IdCarrera,NombreCarrera)values('IGEM','GestiÃ³n Empresarial')
 insert into Carreras(IdCarrera,NombreCarrera)values('ILOG','Logistica')
 
 
@@ -118,6 +118,37 @@ begin
 	else
 		begin
 		 set @msg = 'Alumno no entcontrado en el sistema'
+		end
+end
+go
+create view v_registros
+as
+select Folio,Id_Matricula,HoraEntrada,HoraSalida,IdCarrera from registros inner join Alumnos on registros.Id_Matricula = Alumnos.Matricula 
+go
+
+create procedure sp_mostrar 
+@op int
+as
+begin
+	if @op = 1
+		begin
+		select * from v_registros
+		end
+	if @op = 2
+		begin
+		select * from v_registros where IdCarrera = 'ISIS'
+		end
+	if @op = 3
+		begin
+		select * from v_registros where IdCarrera = 'IIND'
+		end
+	if @op = 3
+		begin
+		select * from v_registros where IdCarrera = 'IGEM'
+		end
+	if @op = 4
+		begin
+		select * from v_registros where IdCarrera = 'ILOG'
 		end
 end
  
