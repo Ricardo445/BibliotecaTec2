@@ -48,11 +48,12 @@ create procedure InsertarEntradas
 @Matricula varchar (9),
 @msg varchar (130) out 
 as
-begin
-	if exists (select Matricula from Alumnos where Matricula=@Matricula)
+BEGIN TRANSACTION
+	BEGIN TRY	
+	if	exists (select Matricula from Alumnos where Matricula=@Matricula)
 		begin
 			 if exists (select Id_Matricula from registros where Id_Matricula=@Matricula)
-		                         Begin
+				 Begin
 					 if exists (select HoraSalida from registros where Id_Matricula=@Matricula and HoraSalida is null)     
 						 begin 
 							 update registros
@@ -74,9 +75,11 @@ begin
 		begin
 			set @msg = 'La Matricula no existe o aun no esta registrada \n si este es el caso acuda con el encargado de biblioteca'
 		end
-end
+COMMIT TRANSACTION
+	END TRY ---TERMINO TRY---
+	BEGIN CATCH
+		SET @msg ='ERROR al cargar los datos'
+		ROLLBACK TRAN
+END CATCH
 
-declare @mensaje varchar (130) 
-execute InsertarEntradas '131000153',@mensaje out
-print @mensaje
-select * from registros
+
