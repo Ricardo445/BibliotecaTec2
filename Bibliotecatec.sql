@@ -82,4 +82,55 @@ COMMIT TRANSACTION
 		ROLLBACK TRAN
 END CATCH
 
+go
+create procedure modifica_alumno
+@Matricula varchar(9),
+@Nombre varchar (30),
+@ApellidoPaterno varchar (30),
+@ApellidoMaterno varchar (30),
+@IdCarrera varchar (4),
+@Semestre int,
+@Seccion char(1),
+@Sexo char(1),
+@msg varchar (130) out 
+as
+begin transaction 
+begin try
+	if exists (select Matricula from Alumnos where Matricula=@Matricula)
+		begin
+		update Alumnos  set Nombre = @Nombre, ApellidoPaterno = @ApellidoPaterno,ApellidoMaterno = @ApellidoMaterno,IdCarrera = @IdCarrera,Semestre=@Semestre,Seccion=@Semestre,Sexo = @Sexo where Matricula = @Matricula
+		set @msg = 'Datos de alumno modificados'
+		end
+	else
+		begin
+		 set @msg = 'Alumno no entcontrado en el sistema'
+		end
+end try
+begin catch 
+ set @msg = 'Error al cargar los datos'
+end catch
+
+go
+
+create procedure elimina_alumno
+@Matricula varchar (9),
+@msg varchar (130) out 
+as
+begin transaction
+begin try
+	if exists (select Matricula from Alumnos where Matricula=@Matricula)
+		begin
+		delete Alumnos where Matricula = @Matricula
+		set @msg = 'Alumno eliminado'
+		end
+	else
+		begin
+		 set @msg = 'Alumno no entcontrado en el sistema'
+		end
+end try 
+begin catch
+ set @msg = 'Error al cargar los datos'
+end catch
+go
+
 
