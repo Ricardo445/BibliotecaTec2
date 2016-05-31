@@ -28,6 +28,39 @@ Create table Administradores
 Usuarios varchar (20) primary key,
 Contraseña varchar (45)
 )
+
+--SP para obtener la contraseña y comparar en el login [30/052016] 
+create procedure contraseña
+@usuario VARCHAR(20)
+AS
+select Contraseña from Administradores where Usuarios= @usuario
+
+
+--SP para agregar nuevos usuarios [30/052016]
+create procedure Insertar_Usuario
+@Usuarios varchar(20),
+@Contraseña varchar (45),
+@msg varchar (130) out 
+as
+begin transaction 
+begin try
+	if exists (select @Usuarios from Administradores where Usuarios=@Usuarios)
+		begin
+		update Administradores  set Usuarios = @Usuarios, Contraseña = @Contraseña where Usuarios = @Usuarios
+		set @msg = 'Datos Actualizados'
+		commit tran
+		end
+	else
+		begin
+			insert into Administradores values(@Usuarios,@Contraseña)
+		 set @msg = 'Datos Agregados'
+		 commit tran
+		end
+end try
+begin catch 
+ set @msg = 'Error al cargar los datos'
+ rollback tran
+end catch	
 -- crear relaciones 
 alter table registros add constraint alumnosRegistros
 	foreign key (Id_Matricula) references Alumnos(Matricula)
