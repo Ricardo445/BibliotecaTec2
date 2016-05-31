@@ -1,0 +1,17 @@
+c:\users\rhf\documents\visual studio 2015\Projects\Biblioteca Tec\Biblioteca Tec\bin\Debug\Biblioteca Tec.exe.config
+c:\users\rhf\documents\visual studio 2015\Projects\Biblioteca Tec\Biblioteca Tec\bin\Debug\Biblioteca Tec.exe
+c:\users\rhf\documents\visual studio 2015\Projects\Biblioteca Tec\Biblioteca Tec\bin\Debug\Biblioteca Tec.pdb
+c:\users\rhf\documents\visual studio 2015\Projects\Biblioteca Tec\Biblioteca Tec\obj\Debug\Biblioteca Tec.csprojResolveAssemblyReference.cache
+c:\users\rhf\documents\visual studio 2015\Projects\Biblioteca Tec\Biblioteca Tec\obj\Debug\Biblioteca_Tec.Form1.resources
+c:\users\rhf\documents\visual studio 2015\Projects\Biblioteca Tec\Biblioteca Tec\obj\Debug\Biblioteca_Tec.Properties.Resources.resources
+c:\users\rhf\documents\visual studio 2015\Projects\Biblioteca Tec\Biblioteca Tec\obj\Debug\Biblioteca Tec.csproj.GenerateResource.Cache
+c:\users\rhf\documents\visual studio 2015\Projects\Biblioteca Tec\Biblioteca Tec\obj\Debug\Biblioteca Tec.exe
+c:\users\rhf\documents\visual studio 2015\Projects\Biblioteca Tec\Biblioteca Tec\obj\Debug\Biblioteca Tec.pdb
+C:\Users\RHF\documents\visual studio 2015\Projects\Biblioteca Tec\Biblioteca Tec\obj\Debug\Biblioteca_Tec.Login.resources
+C:\Users\RHF\documents\visual studio 2015\Projects\Biblioteca Tec\Biblioteca Tec\obj\Debug\Biblioteca_Tec.LoginA.resources
+C:\Users\RHF\documents\visual studio 2015\Projects\Biblioteca Tec\Biblioteca Tec\obj\Debug\Biblioteca_Tec.Opciones.resources
+C:\Users\RHF\documents\visual studio 2015\Projects\Biblioteca Tec\Biblioteca Tec\obj\Debug\Biblioteca_Tec.Administrador.resources
+C:\Users\RHF\documents\visual studio 2015\Projects\Biblioteca Tec\Biblioteca Tec\obj\Debug\Biblioteca_Tec.Andministradores.resources
+C:\Users\RHF\documents\visual studio 2015\Projects\Biblioteca Tec\Biblioteca Tec\obj\Debug\Biblioteca_Tec.Estudiayes.resources
+C:\Users\RHF\documents\visual studio 2015\Projects\Biblioteca Tec\Biblioteca Tec\obj\Debug\Biblioteca_Tec.Reportes.resources
+C:\Users\RHF\documents\visual studio 2015\Projects\Biblioteca Tec\Biblioteca Tec\obj\Debug\Biblioteca_Tec.Visitas.resources
