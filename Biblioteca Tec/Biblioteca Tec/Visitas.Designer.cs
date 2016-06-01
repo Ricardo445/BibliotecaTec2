@@ -45,20 +45,23 @@
             this.txtMatricula.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtMatricula.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtMatricula.Location = new System.Drawing.Point(195, 279);
+            this.txtMatricula.MaxLength = 9;
             this.txtMatricula.Name = "txtMatricula";
             this.txtMatricula.Size = new System.Drawing.Size(271, 40);
             this.txtMatricula.TabIndex = 0;
             this.txtMatricula.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtMatricula.TextChanged += new System.EventHandler(this.txtMatricula_TextChanged);
             this.txtMatricula.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtMatricula_KeyDown);
             // 
             // button1
             // 
             this.button1.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button1.ForeColor = System.Drawing.Color.White;
-            this.button1.Location = new System.Drawing.Point(293, 325);
+            this.button1.Location = new System.Drawing.Point(264, 346);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(88, 46);
+            this.button1.Size = new System.Drawing.Size(122, 46);
             this.button1.TabIndex = 1;
             this.button1.Text = "Registrar";
             this.button1.UseVisualStyleBackColor = true;

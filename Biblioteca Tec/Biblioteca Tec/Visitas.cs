@@ -45,5 +45,10 @@ namespace Biblioteca_Tec
                 label2.Location = new Point((this.Width - label2.Width) / 2, ((this.Height - label2.Height) / 2) + 225);
             }
         }
+
+        private void txtMatricula_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

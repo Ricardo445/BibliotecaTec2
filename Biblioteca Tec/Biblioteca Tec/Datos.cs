@@ -71,7 +71,7 @@ namespace Biblioteca_Tec
         {
             try
             {
-                SqlCommand comand = new SqlCommand("InsertarEntradas", abrir());
+                SqlCommand comand = new SqlCommand("spInsertarEntradas", abrir());
                 comand.CommandType = CommandType.StoredProcedure;
                 comand.Parameters.Add(new SqlParameter("@Matricula", Matricula));
                 SqlParameter mensaje = new SqlParameter("@msg", SqlDbType.VarChar, 50);
@@ -84,6 +84,62 @@ namespace Biblioteca_Tec
             catch (Exception)
             {
                 return "Error";
+            }
+            finally
+            {
+                cerrar();
+            }
+        }
+
+        public string Registraralumnos(string Matricula,string Nombre,string ApellidoPaterno,string ApellidoMaterno,string idCarrera,int Semestre , string Sexo)
+        {
+            try
+            {
+                SqlCommand comand = new SqlCommand("spAgregar_alumno", abrir());
+                comand.CommandType = CommandType.StoredProcedure;
+                comand.Parameters.Add(new SqlParameter("@Matricula", Matricula));
+                comand.Parameters.Add(new SqlParameter("@Nombre", Nombre));
+                comand.Parameters.Add(new SqlParameter("@ApellidoPaterno", ApellidoPaterno));
+                comand.Parameters.Add(new SqlParameter("@ApellidoMaterno", ApellidoMaterno));
+                comand.Parameters.Add(new SqlParameter("@idCarrera", idCarrera));
+                comand.Parameters.Add(new SqlParameter("@Semestre", Semestre));
+                comand.Parameters.Add(new SqlParameter("@Sexo", Sexo));
+
+
+
+                SqlParameter mensaje = new SqlParameter("@msg", SqlDbType.VarChar, 50);
+                mensaje.Direction = ParameterDirection.Output;
+                comand.Parameters.Add(mensaje);
+                comand.ExecuteNonQuery();
+                return comand.Parameters["@msg"].Value.ToString();
+
+            }
+            catch (Exception)
+            {
+                return "Error";
+            }
+            finally
+            {
+                cerrar();
+            }
+        }
+
+        public void ComboCarrera(ComboBox cb)
+        {
+            DataSet ds = new DataSet();
+            try
+            {
+
+                SqlDataAdapter da = new SqlDataAdapter("select IdCarrera,NombreCarrera from Carreras", abrir());
+                da.Fill(ds);
+                cb.DataSource = ds.Tables[0].DefaultView;
+                //valor k mostrara el combo
+                cb.DisplayMember = "NombreCarrera";
+                cb.ValueMember = ds.Tables[0].Columns[0].ToString();
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Error");
             }
             finally
             {
