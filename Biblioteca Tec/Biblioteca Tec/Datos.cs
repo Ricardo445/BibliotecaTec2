@@ -66,23 +66,6 @@ namespace Biblioteca_Tec
         }
         //-----------------------------------------------------------------------------
 
-        public string GetPassword(string sql)
-        {
-            try
-            {
-                SqlCommand cmd = new SqlCommand(sql, abrir());
-                return cmd.ExecuteScalar().ToString();
-
-            }
-            catch (Exception)
-            {
-                return "Error al realizar el registro";
-            }
-            finally
-            {
-                cerrar();
-            }
-        }
 
         public string RegistrarVisitas(string Matricula)
         {

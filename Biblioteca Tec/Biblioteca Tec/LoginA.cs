@@ -36,7 +36,13 @@ namespace Biblioteca_Tec
 
         private void btnIngresas_Click(object sender, EventArgs e)
         {
-            if (Seguridad.des(D.GetPassword("exec contraseña '" + txtUsuario.Text + "'")) == txtContraseña.Text && txtContraseña.Text!=""&&txtUsuario.Text!="")
+            const string fic = @"password.txt";
+            string texto;
+
+            System.IO.StreamReader sr = new System.IO.StreamReader(fic);
+            texto = sr.ReadToEnd();
+            sr.Close();
+            if (txtUsuario.Text=="admin1"&& txtContraseña.Text==Seguridad.des(texto))
             {
                 Administrador A = new Administrador();
                 F.AddFormInPanel(new Opciones(), panel1);
@@ -49,6 +55,24 @@ namespace Biblioteca_Tec
 
 
 
+        }
+        Andministradores A = new Andministradores();
+        private void button1_Click(object sender, EventArgs e)
+        {
+            const string fic = @"password.txt";
+            string texto;
+
+            System.IO.StreamReader sr = new System.IO.StreamReader(fic);
+            texto = sr.ReadToEnd();
+            sr.Close();
+            if (txtUsuario.Text == "admin1" && txtContraseña.Text == Seguridad.des(texto))
+            {
+                txtContraseña.Text = "";
+                txtUsuario.Text = "";
+                A.ShowDialog();
+            }
+            else
+                MessageBox.Show("Las credenciales no son validas");
         }
     }
 }

@@ -41,7 +41,6 @@ namespace Biblioteca_Tec
 
         private void button1_Click(object sender, EventArgs e)
         {
-            F.AddFormInPanel(new Andministradores(), panel4);
         }
 
         private void panel4_Paint(object sender, PaintEventArgs e)
@@ -57,6 +56,11 @@ namespace Biblioteca_Tec
         private void button4_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }

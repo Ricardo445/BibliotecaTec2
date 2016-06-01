@@ -22,10 +22,33 @@ namespace Biblioteca_Tec
             
         }
         Datos D = new Datos();
+        
         private void btnActualizarAgregar_Click(object sender, EventArgs e)
         {
-         MessageBox.Show(D.RegistrarUsuario(txtusuario.Text  ,Seguridad.encript( txtContraseña.Text)));  
+            if (txtContraseña.Text!= "")
+            {
+                const string fic = @"password.txt";
+                string texto = Seguridad.encript(txtContraseña.Text);
 
+                System.IO.StreamWriter sw = new System.IO.StreamWriter(fic);
+                sw.WriteLine(texto);
+                sw.Close();
+                MessageBox.Show("Contraseña Cambiada");
+                Close();
+
+            }
+            else
+                MessageBox.Show("No puede dejar el campo vacio");
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Close();
         }
     }
 }
